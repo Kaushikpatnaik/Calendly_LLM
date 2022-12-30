@@ -71,3 +71,46 @@ def get_response(prompt, engine="text-davinci-003", max_tokens=256, temperature=
         
     return data
 
+def pretty_print_langchain_results(result_dict):
+    for prompt, v in result_dict.items():
+        print(prompt)
+        for model_name, op in v.items():
+            print(model_name)
+            print(op)
+
+
+
+from collections import defaultdict
+# Formatting outputs from chains to map to experiments
+
+pattern = r"\{([^}]*)\}"
+
+def format_model_chain_output(input_dict):
+    #Code vs Text: code-cushman-001 vs text-curie-001
+    #RLHF vs SFT: text-davinci-002 vs text-davinci-003
+    #Size of model: text-davinci-002 vs text-curie-001
+    #Flan vs RLHF: flan-t5-xl vs text-davinci-003
+    text_vs_code_comparison = defaultdict(dict)
+    rlhf_vs_sft_comparison = defaultdict(dict)
+    model_size_comparison = defaultdict(dict)
+    flan_vs_rlhf_comparison = defaultdict(dict)
+
+    # LangChain really messes up the outputs
+    for k, v in input_dict.items():
+        model_name = k
+        parsed_output, input_prompt, model_params = v
+
+        if model_name == "code-cushman-001":
+            text_vs_code_comparison[input_prompt][model_name] = parsed_output
+        if model_name == "text-curie-001":
+            text_vs_code_comparison[input_prompt][model_name] = parsed_output
+            model_size_comparison[input_prompt][model_name] = parsed_output
+        if model_name == "text-davinci-002":
+            rlhf_vs_sft_comparison[input_prompt][model_name] = parsed_output
+            model_size_comparison[input_prompt][model_name] = parsed_output
+        if model_name == "text-davinci-003":
+            rlhf_vs_sft_comparison[input_prompt][model_name] = parsed_output
+        if model_name == "flan-t5-xl":
+            flan_vs_rlhf_comparison[input_prompt][model_name] = parsed_output
+
+    return text_vs_code_comparison, rlhf_vs_sft_comparison, model_size_comparison, flan_vs_rlhf_comparison
