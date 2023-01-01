@@ -29,6 +29,9 @@ all_info_prior_meetings = [
             'timeZone': 'America/New_York',
         },
         "attendees": ["kaushik@gmail.com", "kabir@gmail.com", "ron@gmail.com", "patrick@gmail.com"],
+        'reminders': {
+            'useDefault': True,
+        },
     },
     {
         "summary": "Weekly design sync",
@@ -43,41 +46,94 @@ all_info_prior_meetings = [
             'timeZone': 'America/New_York',
         },
         "attendees": ["kaushik@gmail.com", "kabir@gmail.com", "ron@gmail.com", "patrick@gmail.com"],
+        'reminders': {
+            'useDefault': True,
+        },
     },
     {
         "summary": "Spring meeting",
         "location": [test_meet_link],
-        "datetime": tomorrow + timedelta(hours=9),
-        "duration": 30,
+        "description": "This is a new meeting",
+                "start": {
+            "dateTime": (tomorrow + timedelta(hours=9)).strfttime("%Y-%m-%d %H:%M:%S"),
+            'timeZone': 'America/New_York',
+        },
+        'end': {
+            'dateTime': (tomorrow + timedelta(hours=9) + timedelta(mins=30)).strfttime("%Y-%m-%d %H:%M:%S"),
+            'timeZone': 'America/New_York',
+        },
         "attendees": ["kaushik@gmail.com", "asiya@gmail.com", "ram@gmail.com", "arvind@gmail.com", "alex@gmail.com"],
+        'reminders': {
+            'useDefault': True,
+        },
     },
     {
         "summary": "Discuss Eng roadmap",
         "location": ["Secondary conference room", test_meet_link],
-        "datetime": current_date + timedelta(days=2) + timedelta(hours=10),
-        "duration": 60,
+        "description": "This is a new meeting",
+                "start": {
+            "dateTime": (current_date + timedelta(days=2) + timedelta(hours=10)).strfttime("%Y-%m-%d %H:%M:%S"),
+            'timeZone': 'America/New_York',
+        },
+        'end': {
+            'dateTime': (current_date + timedelta(days=2) + timedelta(hours=10) + timedelta(mins=60)).strfttime("%Y-%m-%d %H:%M:%S"),
+            'timeZone': 'America/New_York',
+        },
         "attendees": ["kaushik@gmail.com", "asiya@gmail.com", "ram@gmail.com", "arvind@gmail.com", "alex@gmail.com"],
+        'reminders': {
+            'useDefault': True,
+        },
      },
      {
         "summary": "Project proposal review",
         "location": ["Secondary conference room", test_meet_link],
-        "datetime": next_friday + timedelta(hours=16),
-        "duration": 30,
+        "description": "This is a new meeting",
+                "start": {
+            "dateTime": (next_friday + timedelta(hours=16)).strfttime("%Y-%m-%d %H:%M:%S"),
+            'timeZone': 'America/New_York',
+        },
+        'end': {
+            'dateTime': (next_friday + timedelta(hours=16) + timedelta(mins=30)).strfttime("%Y-%m-%d %H:%M:%S"),
+            'timeZone': 'America/New_York',
+        },
         "attendees": ["kaushik@gmail.com", "roh@gmail.com"],
+        'reminders': {
+            'useDefault': True,
+        },
      },
      {
         "summary": "Product meeting",
         "location": ["Secondary conference room", test_meet_link],
-        "datetime": two_weeks + timedelta(days=2),
-        "duration": 30,
+        "description": "This is a new meeting",
+                "start": {
+            "dateTime": (two_weeks + timedelta(days=2)).strfttime("%Y-%m-%d %H:%M:%S"),
+            'timeZone': 'America/New_York',
+        },
+        'end': {
+            'dateTime': (two_weeks + timedelta(days=2) + timedelta(mins=30)).strfttime("%Y-%m-%d %H:%M:%S"),
+            'timeZone': 'America/New_York',
+        },
         "attendees": ["kaushik@gmail.com", "roh@gmail.com", "arvind@gmail.com", "alex@gmail.com"],
+        'reminders': {
+            'useDefault': True,
+        },
      },
      {
         "summary": "Lunch with Rochit",
         "location": ["Zareen's Palo Alto"],
-        "datetime": tomorrow + timedelta(hours=12),
-        "duration": 60,
+        "description": "This is a new meeting",
+                "start": {
+            "dateTime": (tomorrow + timedelta(hours=12)).strfttime("%Y-%m-%d %H:%M:%S"),
+            'timeZone': 'America/New_York',
+        },
+        'end': {
+            'dateTime': (two_weeks + timedelta(hours=12) + timedelta(mins=60)).strfttime("%Y-%m-%d %H:%M:%S"),
+            'timeZone': 'America/New_York',
+        },
         "attendees": ["kaushik@gmail.com", "rochit@gmail.com"],
+        'reminders': {
+            'useDefault': True,
+        },
      },
 ]
 
