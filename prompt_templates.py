@@ -1,10 +1,12 @@
 api_list_option = """
-    Assume access to datetime, google calendar and google meet python libraries. Import other libraries as needed.
+    Assume access to datetime, typing python libraries.
     Use one or more of provided functions below:
-    1.name_to_emails(list_of_names)
-    2.create_event(meeting_agenda, date, time, invitees)
+    1.name_to_emails(list_of_names: Sequence[str])
+    2.create_event(meeting_agenda: str, date: datetime.date, time: datetime.timedelta, duration: datetime.timedelta, invitees: Sequence[str])
     3.get_events()
-    4.edit_event(event_id, meeting_agenda, date, time, duration, invitees)
+    4.edit_event(event_id: str, meeting_agenda: str, date: datetime.date, time: datetime.timedelta, duration: datetime.timedelta, invitees: Sequence[str])
+    
+    import the functions from provided_api.py file.
     """
 
 api_list_none = """"""
