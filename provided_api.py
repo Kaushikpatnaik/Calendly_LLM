@@ -1,7 +1,7 @@
 '''
 Mock interface to Google Calendar bcs permissions make iterations slower
 '''
-from typing import Sequence
+from typing import Sequence, Optional
 from datetime import datetime, timedelta
 
 now = datetime.now()
@@ -178,42 +178,26 @@ def create_event(meeting_agenda: str, date: datetime.date, time: timedelta, dura
 
     return
 
-def edit_event(event_id: str, meeting_agenda: str, date: datetime.date, time: timedelta, duration: timedelta, invitees: Sequence[str]):
-    # Set the meeting details
-    starttime = date + time
-    endtime = date + time + duration
-    event = {
-        'summary': meeting_agenda,
-        'location': 'Online',
-        'description': 'This is an edited meeting',
-        'start': {
-            'dateTime': starttime.strftime("%Y-%m-%d %H:%M:%S"),
-            'timeZone': 'America/New_York',
-        },
-        'end': {
-            'dateTime': endtime.strftime("%Y-%m-%d %H:%M:%S"),
-            'timeZone': 'America/New_York',
-        },
-        'attendees': [{'email': email} for email in invitees],
-    }
-
-    for event_info in all_info_prior_meetings:
+def edit_event(event_id: str, meeting_agenda: Optional[str], date: Optional[datetime.date], time: Optional[timedelta], duration: Optional[timedelta], invitees: Optional[Sequence[str]], cancel=False):
+    for idx, event_info in enumerate(all_info_prior_meetings):
         if event_info['event_id'] == event_id:
-            event_info.update(event)
-
-    return
-
-from provided_api import name_to_emails, create_event, get_events, edit_event
-import datetime
-
-# Get tomorrow's date
-tomorrow = datetime.date.today() + datetime.timedelta(days=1)
-
-# Create the event
-create_event(meeting_agenda="Deep work time for GPT-3 agent", date=tomorrow, time=datetime.time(9, 0), duration=datetime.timedelta(hours=3), invitees=name_to_emails(["John", "Jane"]))
-
-# Get the event
-event = get_events()[0]
-
-# Edit the event
-edit_event(event_id=event.id, meeting_agenda="Deep work time for GPT-3 agent", date=tomorrow, time=datetime.time(9, 0), duration=datetime.timedelta(hours=3), invitees=name_to_emails(["John", "Jane"]))
+            if cancel:
+                return all_info_prior_meetings.pop(idx)
+            starttime = datetime.strptime(event_info['start']['dateTime'], "%Y-%m-%d %H:%M:%S") 
+            endtime = datetime.strptime(event_info['end']['dateTime'], "%Y-%m-%d %H:%M:%S")
+            event_duration = endtime - starttime
+            event_date = starttime.date()
+            event_time = starttime - event_date
+            if meeting_agenda:
+                event_info['summary'] = meeting_agenda
+            if date:
+                event_info['start']['dateTime'] = (date + event_time).strftime("%Y-%m-%d %H:%M:%S")
+                event_info['end']['dateTime'] = (date + event_time + event_duration).strftime("%Y-%m-%d %H:%M:%S")
+            if time:
+                event_info['start']['dateTime'] = (event_date + time).strftime("%Y-%m-%d %H:%M:%S")
+                event_info['end']['dateTime'] = (event_date + time + event_duration).strftime("%Y-%m-%d %H:%M:%S")
+            if duration:
+                event_info['end']['dateTime'] = (event_date + event_time + duration).strftime("%Y-%m-%d %H:%M:%S")
+            if invitees:
+                event_info['attendees'] += invitees
+            return event_info

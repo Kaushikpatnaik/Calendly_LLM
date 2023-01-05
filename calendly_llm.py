@@ -11,10 +11,11 @@ from collections import defaultdict
 
 from langchain import LLMChain, OpenAI, PromptTemplate
 
-from prompt_templates import prompt_w_api, prompt_wo_api, api_list_option, api_list_none
-from evaluation import all_info_create_test_cases
+from prompt_templates import *
+from evaluation import all_info_create_test_cases, all_info_edit_test_cases
 
-PROMPT_TEMPLATE = prompt_w_api
+#PROMPT_TEMPLATE = prompt_w_api
+PROMPT_TEMPLATE = prompt_w_few_shot_examples
 
 llm = OpenAI(model_name= "text-davinci-003", temperature=0, max_tokens=1600)
 prompt = PromptTemplate(template=PROMPT_TEMPLATE, input_variables=["query"])
@@ -25,10 +26,12 @@ with open("provided_api.py") as file:
     api_content = file.read()
 
 outputs = defaultdict(dict)
-for req in all_info_create_test_cases:
+for req in all_info_edit_test_cases:
     output = model_chain.run(req)
     outputs[req]['code_output'] = output
     outputs[req]['code_exec'] = False
+    print(output)
+    print(exec(output))
     try:
         code_exec = exec(output)
         outputs[req]['code_exec'] = True
@@ -38,5 +41,6 @@ for req in all_info_create_test_cases:
 for k, v in outputs.items():
     print(k)
     for k1, v1 in v.items():
-        print(v1)
+        if k1 in ['code_exec']:
+            print(v1)
 
