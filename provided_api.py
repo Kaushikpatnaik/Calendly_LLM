@@ -19,7 +19,7 @@ test_meet_link2 = "https://meet.google.com/pqr-stu-vwx"
 all_info_prior_meetings = [
     { 
         "event_id": "1",
-        "summary": "Weekly design sync",
+        "summary": "weekly design sync",
         "location": ["Main Conference Room", test_meet_link],
         "description": "This is a new meeting",
         "start": {
@@ -37,7 +37,7 @@ all_info_prior_meetings = [
     },
     {
         "event_id": "2",
-        "summary": "Weekly design sync",
+        "summary": "weekly design sync",
         "location": ["Main Conference Room", test_meet_link],
         "description": "This is a new meeting",
                 "start": {
@@ -55,7 +55,7 @@ all_info_prior_meetings = [
     },
     {
         "event_id": "3",
-        "summary": "Spring meeting",
+        "summary": "sprint meeting",
         "location": [test_meet_link],
         "description": "This is a new meeting",
                 "start": {
@@ -73,7 +73,7 @@ all_info_prior_meetings = [
     },
     {
         "event_id": "4",
-        "summary": "Discuss Eng roadmap",
+        "summary": "discuss eng roadmap",
         "location": ["Secondary conference room", test_meet_link],
         "description": "This is a new meeting",
                 "start": {
@@ -91,7 +91,7 @@ all_info_prior_meetings = [
      },
      {
         "event_id": "5",
-        "summary": "Project proposal review",
+        "summary": "project proposal review",
         "location": ["Secondary conference room", test_meet_link],
         "description": "This is a new meeting",
                 "start": {
@@ -109,7 +109,7 @@ all_info_prior_meetings = [
      },
      {
         "event_id": "6",
-        "summary": "Product meeting",
+        "summary": "product meeting",
         "location": ["Secondary conference room", test_meet_link],
         "description": "This is a new meeting",
                 "start": {
@@ -127,7 +127,7 @@ all_info_prior_meetings = [
      },
      {
         "event_id": "7",
-        "summary": "Lunch with Rochit",
+        "summary": "lunch with rochit",
         "location": ["Zareen's Palo Alto"],
         "description": "This is a new meeting",
                 "start": {
@@ -178,7 +178,7 @@ def create_event(meeting_agenda: str, date: datetime.date, time: timedelta, dura
 
     return
 
-def edit_event(event_id: str, meeting_agenda: Optional[str], date: Optional[datetime.date], time: Optional[timedelta], duration: Optional[timedelta], invitees: Optional[Sequence[str]], cancel=False):
+def edit_event(event_id: str, meeting_agenda: Optional[str] =None, date: Optional[datetime.date] =None, time: Optional[timedelta] =None, duration: Optional[timedelta] =None, invitees: Optional[Sequence[str]] = None, cancel=False):
     for idx, event_info in enumerate(all_info_prior_meetings):
         if event_info['event_id'] == event_id:
             if cancel:
@@ -187,7 +187,7 @@ def edit_event(event_id: str, meeting_agenda: Optional[str], date: Optional[date
             endtime = datetime.strptime(event_info['end']['dateTime'], "%Y-%m-%d %H:%M:%S")
             event_duration = endtime - starttime
             event_date = starttime.date()
-            event_time = starttime - event_date
+            event_time = starttime - datetime.combine(event_date, datetime.min.time())
             if meeting_agenda:
                 event_info['summary'] = meeting_agenda
             if date:

@@ -30,8 +30,8 @@ for req in all_info_edit_test_cases:
     output = model_chain.run(req)
     outputs[req]['code_output'] = output
     outputs[req]['code_exec'] = False
+    print(req)
     print(output)
-    print(exec(output))
     try:
         code_exec = exec(output)
         outputs[req]['code_exec'] = True

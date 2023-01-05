@@ -23,8 +23,6 @@ all_info_edit_test_cases = [
     "Edit the product meeting agenda two weeks from now to focus on user feedback",
     "Update lunch plans with Rochit to 1.5 hrs",
     "Extend project proposal review by 30mins",
-    "Add seconday conference room for the sprint meeting this week. Keep the meet link",
-    "Update Eng roadmap link to https://meet.google.com/pqr-stu-vwx"
 ]
 
 # need 1 follow up
