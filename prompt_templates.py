@@ -54,7 +54,7 @@ create_event("Meet with Ashish", coming_saturday, time, duration, invitee_emails
 
 # return created meeting
 new_event = get_events()[-1]
-print(new_event)
+return new_event
 
 Having lunch at 12 for 1.5 hrs with Bill and Jack on Jan 10th at South Park Commons
 
@@ -84,7 +84,7 @@ create_event("Lunch with Bill and Jack", meeting_date, time, duration, invitee_e
 
 # return created meeting
 new_event = get_events()[-1]
-print(new_event)
+return new_event
 
 Cancel the design sync this week
 
@@ -121,7 +121,7 @@ else:
 
 # edit correct event_id
 edited_event = edit_event(correct_event_id, cancel=True)
-print(edited_event)
+return edited_event
 """+"{query}"
 
 self_heal_prompt = """
