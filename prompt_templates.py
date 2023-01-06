@@ -12,7 +12,7 @@ api_list_option = """
 
 api_list_none = """"""
 
-prompt_w_api = f"""You are a calender assistant that takes in user instructions and creates, edits and updates google calendar. {api_list_option}
+prompt_w_api = """You are a calender assistant that takes in user instructions and creates, edits and updates google calendar. {api_list_option}
 Write code for completing the following request. Let's think step by step.""" + "{query}"
 
 prompt_wo_api = """You are a calender assistant that takes in user instructions and creates, edits and updates google calendar. Write code for completing the following request. Let's think step by step.{query}"""
@@ -37,7 +37,7 @@ invitee_emails = name_to_emails(list_of_names)
 # get date for meeting
 from datetime import datetime, timedelta
 
-today = datetime.date()
+today = datetime.now().date()
 days_until_saturday = 5 - today.weekday()
 if days_until_saturday <= 0: # Target day has passed
     days_until_saturday += 7
@@ -122,4 +122,18 @@ else:
 # edit correct event_id
 edited_event = edit_event(correct_event_id, cancel=True)
 print(edited_event)
-""" + "{query}"
+"""+"{query}"
+
+self_heal_prompt = """
+Goal: edit the python program given the error string
+
+The following is the program so far:
+
+{program}
+
+The error upon executing the program is:
+{error}
+
+Update the code according based on provided program and error.
+Feel free to include print statements in the code to help debug issues, their output will be included and visible.
+"""

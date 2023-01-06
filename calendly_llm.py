@@ -9,34 +9,22 @@ We want the LLM to be a calendly agent. So essentialy the LLM has three pieces o
 """
 from collections import defaultdict
 
-from langchain import LLMChain, OpenAI, PromptTemplate
-
+from self_heal import self_heal
 from prompt_templates import *
+from llm_utils import get_response
 from evaluation import all_info_create_test_cases, all_info_edit_test_cases
 
-#PROMPT_TEMPLATE = prompt_w_api
 PROMPT_TEMPLATE = prompt_w_few_shot_examples
 
-llm = OpenAI(model_name= "text-davinci-003", temperature=0, max_tokens=1600)
-prompt = PromptTemplate(template=PROMPT_TEMPLATE, input_variables=["query"])
-model_chain = LLMChain(llm=llm, prompt=prompt)
-
-# load the mock api file for testing execution correctness
-with open("provided_api.py") as file:
-    api_content = file.read()
-
 outputs = defaultdict(dict)
-for req in all_info_edit_test_cases:
-    output = model_chain.run(req)
-    outputs[req]['code_output'] = output
-    outputs[req]['code_exec'] = False
-    print(req)
-    print(output)
-    try:
-        code_exec = exec(output)
-        outputs[req]['code_exec'] = True
-    except:
-        continue
+for query in all_info_create_test_cases:
+    curr_prompt = PROMPT_TEMPLATE.format(query=query)
+    output = get_response(prompt=curr_prompt, engine="text-davinci-003", temperature=0, max_tokens=1600)
+    
+    self_heal(output, num_retries=3)
+
+    outputs[query]['code_output'] = output
+    outputs[query]['code_exec'] = False
 
 for k, v in outputs.items():
     print(k)
