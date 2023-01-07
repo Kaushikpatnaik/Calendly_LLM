@@ -12,8 +12,9 @@ all_info_create_test_cases = [
     "Block deep work time 9am-12pm tomorrow to focus on coding for GPT-3 agent"
 ]
 
-# rescheduling and editing
+all_info_create_test_answers = []
 
+# rescheduling and editing
 all_info_edit_test_cases = [
     "Reschedule tomorrow's sprint meeting to start at 11am",
     "Cancel the design sync this week",
@@ -25,20 +26,7 @@ all_info_edit_test_cases = [
     "Extend project proposal review by 30mins",
 ]
 
-# need 1 follow up
-one_info_test_cases = []
+all_info_edit_test_answers = []
 
-# need >1 follow up
-multiple_info_test_cases = []
-
-def get_op_exec_scores(result_dict):
-    # For each parsed output run python exec and get scores
-    exec_results = []
-    for prompt, v in result_dict.items():
-        for model_name, op in v.items():
-            try:
-                exec(op)
-                exec_results.append([prompt, model_name, True])
-            except:
-                exec_results.append([prompt, model_name, False])
-    return exec_results
+# follow up
+follow_up_test_cases = []
