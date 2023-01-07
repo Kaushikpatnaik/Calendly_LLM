@@ -19,16 +19,17 @@ PROMPT_TEMPLATE = prompt_w_few_shot_examples
 outputs = defaultdict(dict)
 for query in all_info_create_test_cases:
     curr_prompt = PROMPT_TEMPLATE.format(query=query)
-    output = get_response(prompt=curr_prompt, engine="text-davinci-003", temperature=0, max_tokens=1600)
-    
+    output = get_response(
+        prompt=curr_prompt, engine="text-davinci-003", temperature=0, max_tokens=1600
+    )
+
     upd_output, code_exec_status = self_heal(output, num_retries=2)
 
-    outputs[query]['code_output'] = upd_output
-    outputs[query]['code_exec'] = code_exec_status
+    outputs[query]["code_output"] = upd_output
+    outputs[query]["code_exec"] = code_exec_status
 
 for k, v in outputs.items():
     print(k)
     for k1, v1 in v.items():
-        if k1 in ['code_exec']:
+        if k1 in ["code_exec"]:
             print(v1)
-

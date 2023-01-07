@@ -9,7 +9,7 @@ all_info_create_test_cases = [
     "Want to meet asiya to discuss eng roadmap. Can you schedule a 1hr meeting thursday at 11am",
     "Need to give updates on product progress to Paul. I will need a few days to work on this, so schedule 1hr two weeks from today at 10am",
     "Setup a early dinner with Roh, Mihir and Alex tomorrow at 6pm",
-    "Block deep work time 9am-12pm tomorrow to focus on coding for GPT-3 agent"
+    "Block deep work time 9am-12pm tomorrow to focus on coding for GPT-3 agent",
 ]
 
 all_info_create_test_answers = []
