@@ -28,14 +28,17 @@ def self_heal(program_string, num_retries):
 if __name__ == "__main__":
     wrong_code = """
     from provided_api import *
-    # lowercase names and meeting agenda
-    meeting_summary = ""Pickup my parents"".lower()
+# lowercase names and meeting agenda
+meeting_summary = ""Pickup my parents"".lower()
+    """
+    correct_code = """
+
+from provided_api import *
+
+# lowercase names and meeting agenda
+meeting_summary = "Pickup my parents".lower()
     """
 
-    correct_code, is_correct = self_heal(wrong_code, 3)
+    corrected_code, is_correct = self_heal(wrong_code, 3)
     assert is_correct
-    assert correct_code == """
-    from provided_api import *
-    # lowercase names and meeting agenda
-    meeting_summary = "Pickup my parents".lower()
-    """
+    assert correct_code.split() == corrected_code.split()

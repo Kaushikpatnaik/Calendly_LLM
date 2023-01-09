@@ -141,7 +141,6 @@ The error upon executing the program is:
 {error}
 
 Update the code according based on provided program and error.
-Feel free to include print statements in the code to help debug issues, their output will be included and visible.
 """
 
 follow_up_prompt = """
@@ -157,11 +156,10 @@ You have access to one or more of provided functions below:
 Goal: Ask follow up questions to a user request. If all information needed is provided, do not ask follow up questions. Use the following format:
 
 {
-    "request": <request>
-    "follow_up": <follow up questions as array, if any>
-    "follow_up_condensed":<follow up questions condensed into a single response, if any>
+    'request': <request>,
+    'follow_up': <follow up questions as array, if any>,
+    'follow_up_condensed':<follow up questions condensed into a single response, if any>
 }
 
 Begin:
-{query}
 """
