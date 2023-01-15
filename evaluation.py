@@ -40,7 +40,7 @@ all_info_find_test_cases = [
     "Need to sync with Ramesh, Ravi, Patrick on some project updates for 30mins in two weeks. Can you find some time?",
     "Setup a meeting to discuss candidate feedback for 15 mins with Patrick, Ramesh and Roh this week",
     "Book a meeting with Sirish next week. Agenda for the meeting is to discuss 2023 plans. Meeting should be 1hr long",
-    "Need to give updates on product progress to Paul. I will need a few days to work on this, so schedule 1hr two weeks from today",
+    "Need to give updates on product progress to Paul. I will need a few days to work on this, so find 1hr after two weeks",
     "Want to meet asiya to discuss eng roadmap. Can you schedule a 1hr meeting this week",
     "Schedule a 30min sprint review this week with Ravi, Sirish and Roh",
     "Grabbin lunch with Paul in two weeks. Find a time"
