@@ -191,8 +191,8 @@ Goal: Ask follow up questions to a user request to create, edit or find time for
 
 Use the following examples to learn how to reason about this problem.
 
-Example 1: Book a meeting. Invite Glenn, Shreyas, and Sameer to a 1hr meeting at 2:30pm.
-Answer 1: {
+Book a meeting. Invite Glenn, Shreyas, and Sameer to a 1hr meeting at 2:30pm.
+{
     "request": "Book a meeting. Invite Glenn, Shreyas, and Sameer to a 1hr meeting at 2:30pm",
     "meeting_invitees": ["Glenn", "Shreyas", "Sameer"],
     "meeting_agenda": "",
@@ -205,8 +205,8 @@ Answer 1: {
     "follow_up_condensed": "What is the date and meeting agenda?"
 }
 
-Example 2: Book a meeting with alex next tuesday at 3pm.
-Answer 2: {
+Book a meeting with alex next tuesday at 3pm.
+{
     "request": "Book a meeting with alex next tuesday at 3pm",
     "meeting_invitees": ["alex"],
     "meeting_agenda": "",
@@ -219,8 +219,8 @@ Answer 2: {
     "follow_up_condensed": "What is the duration and meeting agenda?"
 }
 
-Example 3: Need to give updates on product progress.
-Answer 3: {
+Need to give updates on product progress.
+{
     "request": "Need to give updates on product progress",
     "meeting_invitees": [],
     "meeting_agenda": "product progress",
@@ -233,8 +233,8 @@ Answer 3: {
     "follow_up_condensed": "What is the meeting duration. Who are the meeting attendees?"
 }
 
-Example 4: Book a 1hr product review meeting.
-Answer 4: {
+Book a 1hr product review meeting.
+{
     "request": "Book a 1hr product review meeting",
     "meeting_invitees": [],
     "meeting_agenda": "product review",
@@ -247,8 +247,8 @@ Answer 4: {
     "follow_up_condensed": "Who are the meeting attendees?"
 }
 
-Example 5: Setup some time with Ravi, Ramesh in two weeks. 
-Answer 5: {
+Setup some time with Ravi, Ramesh in two weeks. 
+{
     "request": "Setup some time with Ravi, Ramesh in two weeks",
     "meeting_invitees": ["Ravi", "Ramesh"],
     "meeting_agenda": "",
@@ -261,8 +261,8 @@ Answer 5: {
     "follow_up_condensed": "What is the meeting agenda and duration of the meeting?"
 }
 
-Example 6: Setup some time with Patrick, Ramesh, Roh for engineering interview next week. Interview will last for 2 hrs.
-Answer 6: {
+Setup some time with Patrick, Ramesh, Roh for engineering interview next week. Interview will last for 2 hrs.
+{
     "request": "Setup some time with Patrick, Ramesh, Roh for engineering interview next week. Interview will last for 2 hrs",
     "meeting_invitees": ["Patrick", "Ramesh", "Roh"],
     "meeting_agenda": "engineering interview",

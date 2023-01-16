@@ -46,14 +46,14 @@ all_info_find_test_cases = [
 
 # follow up
 follow_up_test_cases = [
-    ["Book a meeting with Sirish.", "next tuesday at 3pm.", "Agenda for the meeting is to discuss 2023 plans. Meeting should be 1hr long"],
-    ["Schedule 30 minutes with ramesh tomorrow.", "4:30pm to chat about hiring plans"],
-    ["Setup a follow-up with patrick.", "a week from today for 30mins at 2pm.", "Need to discuss project updates"],
-    ["Want to meet asiya to discuss eng roadmap.", "Can you schedule a 1hr meeting thursday at 11am"],
-    ["Reschedule tomorrow's sprint meeting.", "start at 11am"],
-    ["Add Roh to the meeting.", "on eng roadmap"],
-    ["Find some time to discuss Engg. roadmap next week.", "Invite Ravi, Roh, Mihir to the meeting. Meeting should be 1 hr long"],
+    ["Book a meeting with Sirish.", "next tuesday at 3pm.", "Agenda for the meeting is to discuss 2023 plans. Meeting should be 1hr long."],
+    ["Schedule 30 minutes with ramesh tomorrow.", "4:30pm to chat about hiring plans."],
+    ["Setup a follow-up with patrick.", "a week from today for 30mins at 2pm.", "Need to discuss project updates."],
+    ["Want to meet asiya to discuss eng roadmap.", "Can you schedule a 1hr meeting thursday at 11am."],
+    ["Reschedule tomorrow's sprint meeting.", "start at 11am."],
+    ["Add Roh to the meeting.", "on eng roadmap."],
+    ["Find some time to discuss Engg. roadmap next week.", "Invite Ravi, Roh, Mihir to the meeting. Meeting should be 1 hr long."],
     ["Can you find 30 mins for a quick review of product plans for 2023.", "Invite Asiya, Paul, Mihir and Ravi."],
-    ["Setup some time with Patrick, Ramesh, Roh.", "For engineering interview next week.", "Interview will last for 2 hrs"],
+    ["Setup some time with Patrick, Ramesh, Roh.", "For engineering interview next week.", "Interview will last for 2 hrs."],
     ["Need to sync with Ramesh, Ravi, Patrick.", "Project updates for 30mins in two weeks. Can you find some time?"],
 ]
