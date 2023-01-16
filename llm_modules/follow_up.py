@@ -9,17 +9,18 @@ Query is first sent to follow-up module
 - if requirements are satisfied then
 """
 import copy
-from prompt_templates import *
+from llm_modules.prompt_templates import *
 from llm_utils import get_response
 
+FOLLOW_UP_COT_PROMPT_TEMPLATE = follow_up_prompt_w_cot
 
-def follow_up_iterative(init_requests, num_retries):
+def follow_up_iterative(init_requests, num_retries, prompt_template=FOLLOW_UP_COT_PROMPT_TEMPLATE):
     # for testing purposes init_requests is a list of user requests
     attempts = 0
     cp_request = init_requests[attempts]
     while attempts < num_retries:
         attempts += 1
-        curr_prompt = follow_up_prompt + cp_request
+        curr_prompt = prompt_template + cp_request
         print(attempts, cp_request)
         print(curr_prompt)
         follow_up_dict = get_response(
@@ -33,7 +34,7 @@ def follow_up_iterative(init_requests, num_retries):
             q_to_user = follow_up_dict["follow_up_condensed"]
             cp_request += " " + init_requests[attempts]
             print(attempts, cp_request)
-    return follow_up_dict["request"]
+    return follow_up_dict["request"], follow_up_dict["request_type"]
 
 
 if __name__ == "__main__":

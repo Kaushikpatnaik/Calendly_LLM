@@ -9,18 +9,24 @@ We want the LLM to be a calendly agent. So essentialy the LLM has three pieces o
 """
 from collections import defaultdict
 
-from self_heal import self_heal
-from prompt_templates import *
+from llm_modules.self_heal import self_heal
+from llm_modules.follow_up import follow_up_iterative
+from llm_modules.prompt_templates import *
 from llm_utils import get_response
-from evaluation import all_info_create_test_cases, all_info_edit_test_cases
+from evaluation.evaluation import all_info_create_test_cases, all_info_edit_test_cases
 
-PROMPT_TEMPLATE = prompt_w_few_shot_examples
+FOLLOW_UP_COT_PROMPT_TEMPLATE = follow_up_prompt_w_cot
+COT_PROMPT_TEMPLATE = prompt_w_few_shot_examples
 
 outputs = defaultdict(dict)
 for query in all_info_create_test_cases:
-    curr_prompt = PROMPT_TEMPLATE.format(query=query)
+    updated_query, request_type = follow_up_iterative(query, 3, prompt_template=FOLLOW_UP_COT_PROMPT_TEMPLATE)
+
+    updated_query += " . Request type is "+request_type
+
+    codegen_prompt = COT_PROMPT_TEMPLATE.format(query=updated_query)
     output = get_response(
-        prompt=curr_prompt, engine="text-davinci-003", temperature=0, max_tokens=1600
+        prompt=codegen_prompt, engine="text-davinci-003", temperature=0, max_tokens=1600
     )
 
     upd_output, code_exec_status = self_heal(output, num_retries=2)
