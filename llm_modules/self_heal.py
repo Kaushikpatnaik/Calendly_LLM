@@ -12,8 +12,9 @@ def self_heal(program_string, num_retries):
     cp_program_string = copy.deepcopy(program_string)
     while attempts < num_retries:
         try:
-            output = exec(cp_program_string)
-            return cp_program_string, True
+            exec(cp_program_string)
+            returned_val = return_output()
+            return cp_program_string, True, returned_val
         except Exception as e:
             attempts += 1
             curr_prompt = self_heal_prompt.format(program=cp_program_string, error=e)
@@ -23,7 +24,7 @@ def self_heal(program_string, num_retries):
                 temperature=0,
                 max_tokens=1600,
             )
-    return cp_program_string, False
+    return cp_program_string, False, None
 
 if __name__ == "__main__":
     wrong_code = """

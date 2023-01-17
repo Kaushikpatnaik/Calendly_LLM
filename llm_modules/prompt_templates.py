@@ -21,15 +21,14 @@ Write code for completing the following request. Let's think step by step."""
 
 prompt_wo_api = """You are a calender assistant that takes in user instructions and creates, edits and updates google calendar. Write code for completing the following request. Let's think step by step.{query}"""
 
-prompt_w_few_shot_examples = (
-    f"""You are a calender assistant that takes in user instructions and creates, edits and updates google calendar. {api_list_option}
+prompt_w_few_shot_examples = f"""You are a calender assistant that takes in user instructions and creates, edits and updates google calendar. {api_list_option}
 
 Write code for completing the following request. Let's think step by step.
 Use the following examples for reasoning steps.
 
 Meeting with Sirish at Blue bottle coffee in San Mateo coming Saturday at 10:30am. Can you setup a meeting? 1hr meeting is fine. Request type is create.
 
-from provided_api import *
+from api.provided_api import *
 # lowercase names and meeting agenda
 list_of_names = ["Sirish"]
 list_of_names = [s.lower() for s in list_of_names]
@@ -58,12 +57,12 @@ duration = timedelta(hours=1)
 create_event("Meet with Sirish", coming_saturday, time, duration, invitee_emails)
 
 # return created meeting
-new_event = get_events()[-1]
-return new_event
+def return_output():
+    return get_events()[-1]
 
-Having lunch at 12 for 1.5 hrs with Bill and Jack on Jan 10th at South Park Commons
+Having lunch at 12 for 1.5 hrs with Bill and Jack on Jan 10th at South Park Commons. Request type is create.
 
-from provided_api import *
+from api.provided_api import *
 # lowercase names and meeting agenda
 list_of_names = ["Bill", "Jack"]
 list_of_names = [s.lower() for s in list_of_names]
@@ -88,12 +87,12 @@ duration = timedelta(hours=1, minutes=30)
 create_event("Lunch with Bill and Jack", meeting_date, time, duration, invitee_emails)
 
 # return created meeting
-new_event = get_events()[-1]
-return new_event
+def return_output():
+    return get_events()[-1]
 
-Cancel the design sync this week
+Cancel the design sync this week. Request type is edit.
 
-from provided_api import *
+from api.provided_api import *
 # lowercase names and meeting agenda
 meeting_summary = "design sync".lower()
 
@@ -125,11 +124,10 @@ else:
             correct_event_id = event["event_id"]
 
 # edit correct event_id
-edited_event = edit_event(correct_event_id, cancel=True)
-return edited_event
-"""
-    + "{query}"
-)
+def return_output():
+    return edit_event(correct_event_id, cancel=True)
+
+""" + "{query}"
 
 self_heal_prompt = """
 Goal: edit the python program given the error string

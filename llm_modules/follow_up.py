@@ -23,7 +23,6 @@ def follow_up_iterative(init_requests, num_retries, prompt_template=FOLLOW_UP_CO
         follow_up_dict = get_response(
             prompt=curr_prompt, engine="text-davinci-003", temperature=0, max_tokens=256
         )
-        print(follow_up_dict)
         follow_up_dict = eval(follow_up_dict)
         attempts += 1
         if follow_up_dict["follow_up_condensed"] == "" or attempts == num_retries:
@@ -37,11 +36,12 @@ def follow_up_iterative(init_requests, num_retries, prompt_template=FOLLOW_UP_CO
 if __name__ == "__main__":
     from evaluation.evaluation import *
 
-    #for test_case in follow_up_test_cases:
-    #    final_request, request_type, num_attempts = follow_up_iterative(test_case, len(test_case))
-    #    print("should have follow up", final_request, request_type, num_attempts)
+    for test_case in follow_up_test_cases:
+        final_request, request_type, num_attempts = follow_up_iterative(test_case, len(test_case))
+        assert num_attempts == len(test_case)
 
     for test_case in all_info_create_test_cases:
         final_request, request_type, num_attempts = follow_up_iterative([test_case], 3)
-        print("should not have follow up", final_request, request_type, num_attempts)
+        assert num_attempts == 1
+        assert final_request == test_case
 
