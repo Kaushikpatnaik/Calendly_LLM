@@ -22,7 +22,7 @@ outputs = defaultdict(dict)
 for query in all_info_create_test_cases:
     updated_query, request_type = follow_up_iterative(query, 3, prompt_template=FOLLOW_UP_COT_PROMPT_TEMPLATE)
 
-    updated_query += " . Request type is "+request_type
+    updated_query += "Request type is " + request_type + "."
 
     codegen_prompt = COT_PROMPT_TEMPLATE.format(query=updated_query)
     output = get_response(

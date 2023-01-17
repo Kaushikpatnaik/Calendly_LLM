@@ -1,16 +1,16 @@
 # need zero follow-up
 # different ways of stating meeting details, including multiple people
 all_info_create_test_cases = [
-    "Book a meeting with Sirish next tuesday at 3pm. Agenda for the meeting is to discuss 2023 plans. Meeting should be 1hr long",
-    "Schedule 30 minutes with ramesh tomorrow at 4:30pm to chat about hiring plans",
-    "Setup a follow-up with patrick a week from today for 30mins at 2pm. Need to discuss project updates",
-    "Want to meet asiya to discuss eng roadmap. Can you schedule a 1hr meeting thursday at 11am",
-    "Need to give updates on product progress to Paul. I will need a few days to work on this, so schedule 1hr two weeks from today at 10am",
-    "Setup a early dinner with Roh, Mihir and Sirish tomorrow at 6pm",
-    "Block deep work time 9am-12pm tomorrow to focus on coding for GPT-3 agent",
-    "Create a meeting for phone interview with Ram, next Wednesday at 3pm",
-    "Meeting to discuss Eng roadmap, with Ravi, Asiya, Paul and Roh this Friday at 11am",
-    "Book some time with Roh and Mihir to discuss eng pipeline, next Monday at 3pm"
+    "Book a meeting with Sirish next tuesday at 3pm. Agenda for the meeting is to discuss 2023 plans. Meeting should be 1hr long.",
+    "Schedule 30 minutes with ramesh tomorrow at 4:30pm to chat about hiring plans.",
+    "Setup a follow-up with patrick a week from today for 30mins at 2pm. Need to discuss project updates.",
+    "Want to meet asiya to discuss eng roadmap. Can you schedule a 1hr meeting thursday at 11am.",
+    "Need to give updates on product progress to Paul. I will need a few days to work on this, so schedule 1hr two weeks from today at 10am.",
+    "Setup an early 1.5 hr dinner with Roh, Mihir and Sirish tomorrow at 6pm to catch up.",
+    "Block deep work time 9am-12pm tomorrow to focus on coding for GPT-3 agent.",
+    "Create a 30min meeting for phone interview with Ram, next Wednesday at 3pm.",
+    "1hr Meeting to discuss Eng roadmap, with Ravi, Asiya, Paul and Roh this Friday at 11am.",
+    "Book some time, 45 mins, with Roh and Mihir to discuss eng pipeline, next Monday at 3pm."
 ]
 
 all_info_create_test_answers = []

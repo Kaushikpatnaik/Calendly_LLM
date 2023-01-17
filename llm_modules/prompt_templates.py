@@ -6,6 +6,7 @@ api_list_option = """
     3.get_events()
     4.edit_event(event_id: str, meeting_agenda: Optional[str], date: Optional[datetime.date], time: Optional[datetime.timedelta], duration: Optional[datetime.timedelta], invitees: Optional[Sequence[str]], cancel=False))
     5.get_event(id: str)
+    6.find_time(date: datetime.date, time: datetime.timedelta, duration: datetime.timedelta, invitees: Sequence[str])
 
     import the functions from provided_api.py file.
     """
@@ -26,14 +27,14 @@ prompt_w_few_shot_examples = (
 Write code for completing the following request. Let's think step by step.
 Use the following examples for reasoning steps.
 
-Meeting with Ashish at Blue bottle coffee in San Mateo coming Saturday at 10:30am. Can you setup a meeting? 1hr meeting is fine.
+Meeting with Sirish at Blue bottle coffee in San Mateo coming Saturday at 10:30am. Can you setup a meeting? 1hr meeting is fine. Request type is create.
 
 from provided_api import *
 # lowercase names and meeting agenda
-list_of_names = ["Ashish"]
+list_of_names = ["Sirish"]
 list_of_names = [s.lower() for s in list_of_names]
 
-meeting_summary = "Meet with Ashish".lower()
+meeting_summary = "Meet with Sirish".lower()
 
 # we need to convert the names of the invitees to emails
 invitee_emails = name_to_emails(list_of_names)
@@ -54,7 +55,7 @@ time = timedelta(hours=10, minutes=30)
 duration = timedelta(hours=1)
 
 # create the meeting
-create_event("Meet with Ashish", coming_saturday, time, duration, invitee_emails)
+create_event("Meet with Sirish", coming_saturday, time, duration, invitee_emails)
 
 # return created meeting
 new_event = get_events()[-1]
@@ -152,6 +153,7 @@ You have access to one or more of provided functions below:
 3.get_events()
 4.edit_event(event_id: str, meeting_agenda: str, date: datetime.date, time: datetime.timedelta, duration: datetime.timedelta, invitees: Sequence[str])
 5.get_event(id: str)
+6.find_time(date: datetime.date, time: datetime.timedelta, duration: datetime.timedelta, invitees: Sequence[str])
 
 Goal: Ask follow up questions to a user request. If all information needed is provided, do not ask follow up questions. Use the following format:
 
@@ -193,7 +195,7 @@ Use the following examples to learn how to reason about this problem.
 
 Book a meeting. Invite Glenn, Shreyas, and Sameer to a 1hr meeting at 2:30pm.
 {
-    "request": "Book a meeting. Invite Glenn, Shreyas, and Sameer to a 1hr meeting at 2:30pm",
+    "request": "Book a meeting. Invite Glenn, Shreyas, and Sameer to a 1hr meeting at 2:30pm.",
     "meeting_invitees": ["Glenn", "Shreyas", "Sameer"],
     "meeting_agenda": "",
     "meeting_duration": "1hr",
@@ -207,7 +209,7 @@ Book a meeting. Invite Glenn, Shreyas, and Sameer to a 1hr meeting at 2:30pm.
 
 Book a meeting with alex next tuesday at 3pm.
 {
-    "request": "Book a meeting with alex next tuesday at 3pm",
+    "request": "Book a meeting with alex next tuesday at 3pm.",
     "meeting_invitees": ["alex"],
     "meeting_agenda": "",
     "meeting_duration": "",
@@ -221,7 +223,7 @@ Book a meeting with alex next tuesday at 3pm.
 
 Need to give updates on product progress.
 {
-    "request": "Need to give updates on product progress",
+    "request": "Need to give updates on product progress.",
     "meeting_invitees": [],
     "meeting_agenda": "product progress",
     "meeting_duration": "",
@@ -235,7 +237,7 @@ Need to give updates on product progress.
 
 Book a 1hr product review meeting.
 {
-    "request": "Book a 1hr product review meeting",
+    "request": "Book a 1hr product review meeting.",
     "meeting_invitees": [],
     "meeting_agenda": "product review",
     "meeting_duration": "1hr",
@@ -249,7 +251,7 @@ Book a 1hr product review meeting.
 
 Setup some time with Ravi, Ramesh in two weeks. 
 {
-    "request": "Setup some time with Ravi, Ramesh in two weeks",
+    "request": "Setup some time with Ravi, Ramesh in two weeks.",
     "meeting_invitees": ["Ravi", "Ramesh"],
     "meeting_agenda": "",
     "meeting_duration": "",
@@ -263,7 +265,7 @@ Setup some time with Ravi, Ramesh in two weeks.
 
 Setup some time with Patrick, Ramesh, Roh for engineering interview next week. Interview will last for 2 hrs.
 {
-    "request": "Setup some time with Patrick, Ramesh, Roh for engineering interview next week. Interview will last for 2 hrs",
+    "request": "Setup some time with Patrick, Ramesh, Roh for engineering interview next week. Interview will last for 2 hrs.",
     "meeting_invitees": ["Patrick", "Ramesh", "Roh"],
     "meeting_agenda": "engineering interview",
     "meeting_duration": "2hrs",
