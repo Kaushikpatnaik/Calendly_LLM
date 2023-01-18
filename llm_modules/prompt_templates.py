@@ -58,8 +58,7 @@ duration = timedelta(hours=1)
 create_event("Meet with Sirish", coming_saturday, time, duration, invitee_emails)
 
 # return created meeting
-def return_output():
-    return get_events()[-1]
+answer = get_events()[-1]
 
 Having lunch at 12 for 1.5 hrs with Bill and Jack on Jan 10th at South Park Commons. Request type is create.
 
@@ -88,8 +87,7 @@ duration = timedelta(hours=1, minutes=30)
 create_event("Lunch with Bill and Jack", meeting_date, time, duration, invitee_emails)
 
 # return created meeting
-def return_output():
-    return get_events()[-1]
+answer = get_events()[-1]
 
 Cancel the design sync this week. Request type is edit.
 
@@ -125,8 +123,7 @@ else:
             correct_event_id = event["event_id"]
 
 # edit correct event_id
-def return_output():
-    return edit_event(correct_event_id, cancel=True)
+answer = edit_event(correct_event_id, cancel=True)
 
 """
     + "{query}"

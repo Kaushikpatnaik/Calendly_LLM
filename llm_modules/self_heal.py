@@ -13,7 +13,8 @@ def self_heal(program_string: str, num_retries: int, engine: str):
     while attempts < num_retries:
         try:
             exec(cp_program_string)
-            returned_val = return_output()
+            # KP: this is way harder than it should be
+            returned_val = locals()['answer']
             return cp_program_string, True, returned_val
         except Exception as e:
             attempts += 1
