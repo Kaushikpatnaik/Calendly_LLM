@@ -21,7 +21,8 @@ Write code for completing the following request. Let's think step by step."""
 
 prompt_wo_api = """You are a calender assistant that takes in user instructions and creates, edits and updates google calendar. Write code for completing the following request. Let's think step by step.{query}"""
 
-prompt_w_few_shot_examples = f"""You are a calender assistant that takes in user instructions and creates, edits and updates google calendar. {api_list_option}
+prompt_w_few_shot_examples = (
+    f"""You are a calender assistant that takes in user instructions and creates, edits and updates google calendar. {api_list_option}
 
 Write code for completing the following request. Let's think step by step.
 Use the following examples for reasoning steps.
@@ -127,7 +128,9 @@ else:
 def return_output():
     return edit_event(correct_event_id, cancel=True)
 
-""" + "{query}"
+"""
+    + "{query}"
+)
 
 self_heal_prompt = """
 Goal: edit the python program given the error string

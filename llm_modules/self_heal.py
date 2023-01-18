@@ -7,7 +7,7 @@ from llm_modules.prompt_templates import *
 from llm_utils import get_response
 
 
-def self_heal(program_string, num_retries):
+def self_heal(program_string: str, num_retries: int, engine: str):
     attempts = 0
     cp_program_string = copy.deepcopy(program_string)
     while attempts < num_retries:
@@ -20,11 +20,12 @@ def self_heal(program_string, num_retries):
             curr_prompt = self_heal_prompt.format(program=cp_program_string, error=e)
             cp_program_string = get_response(
                 prompt=curr_prompt,
-                engine="text-davinci-003",
+                engine=engine,
                 temperature=0,
                 max_tokens=1600,
             )
     return cp_program_string, False, None
+
 
 if __name__ == "__main__":
     wrong_code = """

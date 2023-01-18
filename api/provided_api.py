@@ -288,19 +288,28 @@ def edit_event(
                 event_info["attendees"] += invitees
             return event_info
 
+
 def _availability_invitee():
     # utility to convert event DB to availibility for invitees
     attendee_event_times = defaultdict(list)
     for event in all_info_prior_meetings:
         event_attendees = event["attendees"]
-        event_start_time = datetime.strptime(event["start"]["dateTime"], "%Y-%m-%d %H:%M:%S")
-        event_end_time = datetime.strptime(event["end"]["dateTime"], "%Y-%m-%d %H:%M:%S")
+        event_start_time = datetime.strptime(
+            event["start"]["dateTime"], "%Y-%m-%d %H:%M:%S"
+        )
+        event_end_time = datetime.strptime(
+            event["end"]["dateTime"], "%Y-%m-%d %H:%M:%S"
+        )
         for event_attendee in event_attendees:
-            attendee_event_times[event_attendee].append([event_start_time, event_end_time])
+            attendee_event_times[event_attendee].append(
+                [event_start_time, event_end_time]
+            )
 
     return attendee_event_times
 
+
 attendee_event_times = _availability_invitee()
+
 
 def _get_available_times(event_times: list, duration: timedelta):
     """
@@ -314,17 +323,21 @@ def _get_available_times(event_times: list, duration: timedelta):
         A set of datetime objects representing the available times.
     """
 
-    #group events by date
+    # group events by date
     events_by_date = defaultdict(list)
     for event in event_times:
         date = event[0].date()
         events_by_date[date].append(event)
 
-    #find available times per date
+    # find available times per date
     available_times = []
     for date, events in events_by_date.items():
-        start_time = datetime.combine(date, datetime.strptime('09:00:00', '%H:%M:%S').time())
-        end_time = datetime.combine(date, datetime.strptime('17:00:00', '%H:%M:%S').time())
+        start_time = datetime.combine(
+            date, datetime.strptime("09:00:00", "%H:%M:%S").time()
+        )
+        end_time = datetime.combine(
+            date, datetime.strptime("17:00:00", "%H:%M:%S").time()
+        )
         for event in events:
             event_start_time = event[0]
             event_end_time = event[1]
@@ -338,6 +351,7 @@ def _get_available_times(event_times: list, duration: timedelta):
 
     return available_times
 
+
 def _find_intersection_times(events_a, events_b):
     intersection = []
     for event_a in events_a:
@@ -347,11 +361,14 @@ def _find_intersection_times(events_a, events_b):
             start_b = event_b[0]
             end_b = event_b[1]
             if start_a < end_b and start_b < end_a:
-                intersection.append([
-                    max(start_a, start_b).strftime("%Y-%m-%d %H:%M:%S"),
-                    min(end_a, end_b).strftime("%Y-%m-%d %H:%M:%S")
-                ])
+                intersection.append(
+                    [
+                        max(start_a, start_b).strftime("%Y-%m-%d %H:%M:%S"),
+                        min(end_a, end_b).strftime("%Y-%m-%d %H:%M:%S"),
+                    ]
+                )
     return intersection
+
 
 def find_time(invitees: Sequence[str], duration: timedelta, meeting_agenda: str):
     """
@@ -369,12 +386,16 @@ def find_time(invitees: Sequence[str], duration: timedelta, meeting_agenda: str)
     # Get the list of available times for each invitee
     available_times = defaultdict(list)
     for invitee in invitees:
-        available_times[invitee] = _get_available_times(attendee_event_times[invitee], duration)
+        available_times[invitee] = _get_available_times(
+            attendee_event_times[invitee], duration
+        )
 
     # Find the intersection of all available times
     first_invitee_avail = available_times[invitees[0]]
     for invitee in invitees[1:]:
-        first_invitee_avail = _find_intersection_times(first_invitee_avail, available_times[invitee])
+        first_invitee_avail = _find_intersection_times(
+            first_invitee_avail, available_times[invitee]
+        )
 
     # Find the earliest time in the intersection
     earliest_time = min(first_invitee_avail)
