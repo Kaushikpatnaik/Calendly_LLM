@@ -17,16 +17,16 @@ all_info_create_test_answers = []
 
 # rescheduling and editing
 all_info_edit_test_cases = [
-    "Reschedule tomorrow's sprint meeting to start at 11am",
-    "Cancel the design sync this week",
-    "Add Roh to the meeting on eng roadmap",
-    "I can't attend next week's design sync",
-    "Need to pickup my parents this friday afternoon. Can't make meetings post 3pm",
-    "Edit the product meeting agenda two weeks from now to focus on user feedback",
-    "Update lunch plans with Rochit to 1.5 hrs",
-    "Extend project proposal review by 30mins",
-    "Update the design sync meeting two weeks from now. Asiya and Mihir will be presenting updates on UI",
-    "Move the eng roadmap meeting to next week",
+    "Reschedule tomorrow's sprint meeting to start at 11am.",
+    "Cancel the design sync this week.",
+    "Add Roh to the meeting on eng roadmap.",
+    "I can't attend next week's design sync.",
+    "Need to pickup my parents this friday afternoon. Can't make meetings post 3pm.",
+    "Edit the product meeting agenda two weeks from now to focus on user feedback.",
+    "Update lunch plans with Rochit to 1.5 hrs.",
+    "Extend project proposal review by 30mins.",
+    "Update the design sync meeting two weeks from now. Asiya and Mihir will be presenting updates on UI.",
+    "Move the eng roadmap meeting to next week.",
 ]
 
 all_info_edit_test_answers = []

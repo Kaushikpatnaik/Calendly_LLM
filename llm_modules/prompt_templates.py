@@ -183,8 +183,8 @@ Goal: Ask follow up questions to a user request to create, edit or find time for
     "meeting_duration": <meeting duration, if any>,
     "meeting_time": <meeting time, if any>,
     "meeting_date": <meeting date, if any>,
+    "request_type_explanation": <request type explanation>,
     "request_type": <create, edit or find>,
-    "request_type_explanation": <request type explanation>
     "follow_up": <follow up questions as array, if any>,
     "follow_up_condensed":<follow up questions condensed into a single response, if any>
 }
@@ -199,8 +199,8 @@ Book a meeting. Invite Glenn, Shreyas, and Sameer to a 1hr meeting at 2:30pm.
     "meeting_duration": "1hr",
     "meeting_time": "2:30pm",
     "meeting_date": "",
-    "request_type": "create",
     "request_type_explanation": "time provided",
+    "request_type": "create",
     "follow_up": ["What is the meeting agenda?", "What is the date for the meeting?"],
     "follow_up_condensed": "What is the date and meeting agenda?"
 }
@@ -213,8 +213,8 @@ Book a meeting with alex next tuesday at 3pm.
     "meeting_duration": "",
     "meeting_time": "3pm",
     "meeting_date": "next tuesday",
-    "request_type": "create",
     "request_type_explanation": "date and time provided",
+    "request_type": "create",
     "follow_up": ["What is the duration of the meeting?", "What is the meeting agenda?"],
     "follow_up_condensed": "What is the duration and meeting agenda?"
 }
@@ -227,8 +227,8 @@ Need to give updates on product progress.
     "meeting_duration": "",
     "meeting_time": "",
     "meeting_date": "",
-    "request_type": "find",
     "request_type_explanation": "date or time not provided",
+    "request_type": "find",
     "follow_up": ["What is the duration of the meeting?", "Who are the meeting attendees?"],
     "follow_up_condensed": "What is the meeting duration. Who are the meeting attendees?"
 }
@@ -241,8 +241,8 @@ Book a 1hr product review meeting.
     "meeting_duration": "1hr",
     "meeting_time": "",
     "meeting_date": "",
-    "request_type": "find",
     "request_type_explanation": "date or time not provided",
+    "request_type": "find",
     "follow_up": ["Who are the meeting attendees?"],
     "follow_up_condensed": "Who are the meeting attendees?"
 }
@@ -255,8 +255,8 @@ Setup some time with Ravi, Ramesh in two weeks.
     "meeting_duration": "",
     "meeting_time": "",
     "meeting_date": "",
-    "request_type": "find",
     "request_type_explanation": "date or time not provided",
+    "request_type": "find",
     "follow_up": ["What is the duration of the meeting?", "What is the meeting agenda?"],
     "follow_up_condensed": "What is the meeting agenda and duration of the meeting?"
 }
@@ -269,8 +269,36 @@ Setup some time with Patrick, Ramesh, Roh for engineering interview next week. I
     "meeting_duration": "2hrs",
     "meeting_time": "",
     "meeting_date": "",
-    "request_type": "find",
     "request_type_explanation": "date or time not provided",
+    "request_type": "find",
+    "follow_up": [],
+    "follow_up_condensed": ""
+}
+
+Cancel sprint meeting this week.
+{
+    "request": "Cancel sprint meeting this week.",
+    "meeting_invitees": [],
+    "meeting_agenda": "sprint meeting",
+    "meeting_duration": "",
+    "meeting_time": "",
+    "meeting_date": "",
+    "request_type_explanation": "existing meeting being edited",
+    "request_type": "edit",
+    "follow_up": [],
+    "follow_up_condensed": ""
+}
+
+Extend the design sync meeting two weeks from now to 2hrs.
+{
+    "request": "Extend the design sync meeting two weeks from now to 2hrs.",
+    "meeting_invitees": [],
+    "meeting_agenda": "design sync meeting",
+    "meeting_duration": "",
+    "meeting_time": "",
+    "meeting_date": "",
+    "request_type_explanation": "existing meeting being edited",
+    "request_type": "edit",
     "follow_up": [],
     "follow_up_condensed": ""
 }

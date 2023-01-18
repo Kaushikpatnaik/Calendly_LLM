@@ -31,6 +31,7 @@ def follow_up_iterative(
             prompt=curr_prompt, engine=engine, temperature=0, max_tokens=256
         )
         follow_up_dict = eval(follow_up_dict)
+        print(follow_up_dict)
         attempts += 1
         if follow_up_dict["follow_up_condensed"] == "" or attempts == num_retries:
             return follow_up_dict["request"], follow_up_dict["request_type"], attempts

@@ -129,4 +129,4 @@ dmypy.json
 .pyre/
 
 # Output files
-.json
+logging/*.json

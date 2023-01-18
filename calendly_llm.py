@@ -33,7 +33,7 @@ def run_calendly(
     self_heal_retries: int = 2,
 ):
     updated_query, request_type, num_attempts = follow_up_iterative(
-        [query], follow_up_retries, engine, prompt_template=FOLLOW_UP_COT_PROMPT_TEMPLATE
+        query, follow_up_retries, engine, prompt_template=FOLLOW_UP_COT_PROMPT_TEMPLATE
     )
 
     updated_query += " Request type is " + request_type + "."
@@ -53,8 +53,10 @@ def run_calendly(
 def run_test_cases(test_cases: Sequence[str], test_case_name: str):
     outputs = defaultdict(dict)
     for query in tqdm(test_cases):
-
-        upd_output, code_exec_status, returned_value = run_calendly(query)
+        if isinstance(query, str):
+            upd_output, code_exec_status, returned_value = run_calendly([query])
+        else:
+            upd_output, code_exec_status, returned_value = run_calendly(query)
 
         outputs[query]["code_output"] = upd_output
         outputs[query]["code_exec"] = code_exec_status
@@ -69,4 +71,7 @@ def run_test_cases(test_cases: Sequence[str], test_case_name: str):
 
 
 if __name__ == "__main__":
-    run_test_cases(all_info_create_test_cases, "all_info_create")
+    #run_test_cases(all_info_create_test_cases, "all_info_create")
+    run_test_cases(all_info_edit_test_cases, "all_info_edit")
+    run_test_cases(all_info_find_test_cases, "all_info_find")
+    run_test_cases(follow_up_test_cases, "follow_up")
