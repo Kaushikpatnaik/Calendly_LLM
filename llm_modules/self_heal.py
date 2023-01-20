@@ -14,7 +14,7 @@ def self_heal(program_string: str, num_retries: int, engine: str):
         try:
             exec(cp_program_string)
             # KP: this is way harder than it should be
-            returned_val = locals()['answer']
+            returned_val = locals()["answer"]
             return cp_program_string, True, returned_val
         except Exception as e:
             attempts += 1

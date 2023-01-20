@@ -216,6 +216,7 @@ def create_event(
     invitees: Sequence[str],
 ):
     # Set the meeting details
+    date = datetime.fromordinal(date.toordinal())
     starttime = date + time
     endtime = date + time + duration
     len_events = len(get_events())

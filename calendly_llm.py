@@ -61,6 +61,7 @@ def run_test_cases(test_cases: Sequence[str], test_case_name: str):
         outputs[query]["code_output"] = upd_output
         outputs[query]["code_exec"] = code_exec_status
         outputs[query]["returned_value"] = returned_value
+        print(returned_value)
 
     # write output to file
     now = datetime.now()
@@ -71,7 +72,7 @@ def run_test_cases(test_cases: Sequence[str], test_case_name: str):
 
 
 if __name__ == "__main__":
-    #run_test_cases(all_info_create_test_cases, "all_info_create")
-    run_test_cases(all_info_edit_test_cases, "all_info_edit")
-    run_test_cases(all_info_find_test_cases, "all_info_find")
-    run_test_cases(follow_up_test_cases, "follow_up")
+    run_test_cases(all_info_create_test_cases, "all_info_create")
+    #run_test_cases(all_info_edit_test_cases, "all_info_edit")
+    #run_test_cases(all_info_find_test_cases, "all_info_find")
+    #run_test_cases(follow_up_test_cases, "follow_up")
