@@ -40,13 +40,15 @@ meeting_summary = "Meet with Sirish".lower()
 invitee_emails = name_to_emails(list_of_names)
 
 # get date for meeting
+# indexing for days start from 0
+# monday is 0, tuesday is 1, wednesday is 2, thursday is 3, friday is 4, saturday is 5, sunday is 6
 from datetime import datetime, timedelta
 
 today = datetime.now().date()
 days_until_saturday = 5 - today.weekday()
 if days_until_saturday <= 0: # Target day has passed
     days_until_saturday += 7
-coming_saturday = today + timedelta(days_until_saturday)
+meeting_date = today + timedelta(days_until_saturday)
 
 # time for meeting
 time = timedelta(hours=10, minutes=30)
@@ -55,7 +57,36 @@ time = timedelta(hours=10, minutes=30)
 duration = timedelta(hours=1)
 
 # create the meeting
-create_event("Meet with Sirish", coming_saturday, time, duration, invitee_emails)
+create_event(meeting_summary, meeting_date, time, duration, invitee_emails)
+
+# return created meeting
+answer = get_events()[-1]
+
+Book dinner with Figma at 6pm for 45 mins three weeks from now
+
+from api.provided_api import *
+# lowercase names and meeting agenda
+list_of_names = ["Figma"]
+list_of_names = [s.lower() for s in list_of_names]
+
+meeting_summary = "dinner".lower()
+
+# we need to convert the names of the invitees to emails
+invitee_emails = name_to_emails(list_of_names)
+
+# get date for meeting
+from datetime import datetime, timedelta
+today = datetime.now().date()
+meeting_date = today + timedelta(weeks=3)
+
+# time for meeting
+time = timedelta(hours=18)
+
+# duration for meeting
+duration = timedelta(hours=0, minutes=45)
+
+# create the meeting
+create_event(meeting_summary, meeting_date, time, duration, invitee_emails)
 
 # return created meeting
 answer = get_events()[-1]
@@ -67,10 +98,9 @@ from api.provided_api import *
 list_of_names = ["Bill", "Jack"]
 list_of_names = [s.lower() for s in list_of_names]
 
-meeting_summary = ""Lunch with Bill and Jack"".lower()
+meeting_summary = "Lunch with Bill and Jack".lower()
 
 # we need to convert the names of the invitees to emails
-list_of_names = ["Bill", "Jack"]
 invitee_emails = name_to_emails(list_of_names)
 
 # get date for meeting
@@ -84,7 +114,7 @@ time = timedelta(hours=12)
 duration = timedelta(hours=1, minutes=30)
 
 # create the meeting
-create_event("Lunch with Bill and Jack", meeting_date, time, duration, invitee_emails)
+create_event(meeting_summary, meeting_date, time, duration, invitee_emails)
 
 # return created meeting
 answer = get_events()[-1]

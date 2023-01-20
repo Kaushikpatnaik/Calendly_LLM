@@ -20,7 +20,7 @@ from llm_modules.self_heal import self_heal
 from llm_modules.follow_up import follow_up_iterative
 from llm_modules.prompt_templates import *
 from llm_utils import get_response
-from evaluation.evaluation import *
+from evaluation.test_cases import *
 
 FOLLOW_UP_COT_PROMPT_TEMPLATE = follow_up_prompt_w_cot
 COT_PROMPT_TEMPLATE = prompt_w_few_shot_examples
@@ -61,7 +61,6 @@ def run_test_cases(test_cases: Sequence[str], test_case_name: str):
         outputs[query]["code_output"] = upd_output
         outputs[query]["code_exec"] = code_exec_status
         outputs[query]["returned_value"] = returned_value
-        print(returned_value)
 
     # write output to file
     now = datetime.now()
@@ -70,9 +69,12 @@ def run_test_cases(test_cases: Sequence[str], test_case_name: str):
     with open(os.path.join(".", "logging", file_name), "w") as f:
         json.dump(outputs, f)
 
+    return outputs
+
 
 if __name__ == "__main__":
-    run_test_cases(all_info_create_test_cases, "all_info_create")
+    all_info_output = run_test_cases(all_info_create_test_cases, "all_info_create")
+    
     #run_test_cases(all_info_edit_test_cases, "all_info_edit")
     #run_test_cases(all_info_find_test_cases, "all_info_find")
     #run_test_cases(follow_up_test_cases, "follow_up")

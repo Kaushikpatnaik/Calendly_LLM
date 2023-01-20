@@ -45,7 +45,7 @@ def follow_up_iterative(
 
 
 if __name__ == "__main__":
-    from evaluation.evaluation import *
+    from evaluation.test_cases import *
 
     for test_case in follow_up_test_cases:
         final_request, request_type, num_attempts = follow_up_iterative(

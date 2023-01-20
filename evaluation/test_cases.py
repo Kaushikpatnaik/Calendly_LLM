@@ -17,9 +17,9 @@ all_info_create_test_cases = [
 
 now = datetime.now()
 current_date = datetime.now().date().strftime("%Y-%m-%d")
-tomorrow = (current_date + timedelta(days=1)).strftime("%Y-%m-%d")
-next_week = (current_date + timedelta(weeks=1)).strftime("%Y-%m-%d")
-two_weeks = (current_date + timedelta(weeks=2)).strftime("%Y-%m-%d")
+tomorrow = (datetime.now().date()+ timedelta(days=1)).strftime("%Y-%m-%d")
+next_week = (datetime.now().date() + timedelta(weeks=1)).strftime("%Y-%m-%d")
+two_weeks = (datetime.now().date() + timedelta(weeks=2)).strftime("%Y-%m-%d")
 
 def get_next_weekday(day_of_week):
     today = (datetime.now() + timedelta(weeks=1)).date()
@@ -39,7 +39,7 @@ def get_weekday(day_of_week):
 all_info_create_test_answers = [
     {
         "event_id": "7",
-        "summary": "Discuss 2023 plans",
+        "summary": "discuss 2023 plans",
         "location": "Online",
         "description": "This is a new meeting",
         "start": {"dateTime": get_next_weekday(1) + " 15:00:00", "timeZone": "America/New_York"},
@@ -49,7 +49,7 @@ all_info_create_test_answers = [
     },
     {
         "event_id": "8",
-        "summary": "Chat with Ramesh about hiring plans",
+        "summary": "hiring plans",
         "location": "Online",
         "description": "This is a new meeting",
         "start": {"dateTime": tomorrow + " 16:30:00", "timeZone": "America/New_York"},
@@ -59,7 +59,7 @@ all_info_create_test_answers = [
     },
     {
         "event_id": "9",
-        "summary": "Follow-up with Patrick",
+        "summary": "follow-up with patrick",
         "location": "Online",
         "description": "This is a new meeting",
         "start": {"dateTime": next_week + " 14:00:00", "timeZone": "America/New_York"},
@@ -69,7 +69,7 @@ all_info_create_test_answers = [
     },
     {
         "event_id": "10",
-        "summary": "Discuss Eng Roadmap",
+        "summary": "discuss eng roadmap",
         "location": "Online",
         "description": "This is a new meeting",
         "start": {"dateTime": get_weekday(3) + " 11:00:00", "timeZone": "America/New_York"},
@@ -79,7 +79,7 @@ all_info_create_test_answers = [
     },
     {
         "event_id": "11",
-        "summary": "Product progress update",
+        "summary": "product progress update",
         "location": "Online",
         "description": "This is a new meeting",
         "start": {"dateTime": two_weeks + " 10:00:00", "timeZone": "America/New_York"},
@@ -89,7 +89,7 @@ all_info_create_test_answers = [
     },
     {
         "event_id": "12",
-        "summary": "Dinner with Roh, Mihir and Sirish",
+        "summary": "dinner with roh, mihir and sirish",
         "location": "Online",
         "description": "This is a new meeting",
         "start": {"dateTime": tomorrow + " 18:00:00", "timeZone": "America/New_York"},
@@ -103,7 +103,7 @@ all_info_create_test_answers = [
     },
     {
         "event_id": "13",
-        "summary": "Deep work time for GPT-3 agent",
+        "summary": "deep work time for gpt-3 agent",
         "location": "Online",
         "description": "This is a new meeting",
         "start": {"dateTime": tomorrow + " 09:00:00", "timeZone": "America/New_York"},
@@ -113,7 +113,7 @@ all_info_create_test_answers = [
     },
     {
         "event_id": "14",
-        "summary": "Phone interview with Ram",
+        "summary": "phone interview with ram",
         "location": "Online",
         "description": "This is a new meeting",
         "start": {"dateTime": get_next_weekday(2) + " 15:00:00", "timeZone": "America/New_York"},
@@ -123,7 +123,7 @@ all_info_create_test_answers = [
     },
     {
         "event_id": "15",
-        "summary": "Discuss Eng roadmap",
+        "summary": "discuss eng roadmap",
         "location": "Online",
         "description": "This is a new meeting",
         "start": {"dateTime": get_weekday(4) + " 11:00:00", "timeZone": "America/New_York"},
@@ -138,7 +138,7 @@ all_info_create_test_answers = [
     },
     {
         "event_id": "16",
-        "summary": "Discuss eng pipeline",
+        "summary": "discuss eng pipeline",
         "location": "Online",
         "description": "This is a new meeting",
         "start": {"dateTime": get_next_weekday(0) + " 15:00:00", "timeZone": "America/New_York"},
